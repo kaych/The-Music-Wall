@@ -1,0 +1,16 @@
+<h1><%= @musics.song_title %></h1>
+
+<p>
+  Artist: <%= @musics.author %>
+</p>
+
+<p>
+  Link: <a href="<%= @musics.url %>"><%= @musics.url %></a>
+</p>
+
+<p>
+  Created at: <%= @musics.created_at %>
+</p>
+
+<hr/>
+<a href="/music">Back to Music Wall</a>
