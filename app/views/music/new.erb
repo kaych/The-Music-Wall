@@ -1,4 +1,4 @@
-<h1>Submit Music</h1>
+<h1>Post a Song</h1>
 
 <% if @musics.errors.any? %>
   <div>
@@ -14,23 +14,23 @@
 <form method="post" action="/music">
 <hr/>
 
-  <div>
-    <label>Artist:</label>
-    <input type="text" name="author" value="<%= @musics.author %>">
+  <div class="form-group">
+    <label for="exampleInputAuthor1">Artist</label>
+    <input type="artist" name="author" class="form-control" id="exampleInputAuthor1"  placeholder="Artist" value="<%= @musics.author %>">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputSong1">Song Title:</label>
+    <input type="song_title" name="song_title" class="form-control" id="exampleInputSong1"  placeholder="Song Name" value="<%= @musics.song_title %>">
+  </div>
+
+  <div class="form group">
+    <label for="exampleInputURL">URL (optional):</label>
+    <input type="url" name="url" class="form-control" id="exampleInputURL" placeholder="Optional Link" value="<%= @musics.url %>">
   </div>
 
   <div>
-    <label>Song Title:</label>
-    <input type="text" name="song_title" value="<%= @musics.song_title %>">
-  </div>
-
-  <div>
-    <label>URL (optional):</label>
-    <input type="text" name="url" value="<%= @musics.url %>">
-  </div>
-
-  <div>
-  <button>SUBMIT!</button>
+  <button type="submit" class="btn btn-primary">Submit</button>
   </div>
 
 </form>
