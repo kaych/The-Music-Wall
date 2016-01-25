@@ -3,7 +3,7 @@ get '/' do
   erb :index
 end
 
-get '/musics' do
+get '/music' do
   @musics = Music.all 
-  erb :'/musics/index'
+  erb :'/music/index'
 end
