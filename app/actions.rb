@@ -13,6 +13,11 @@ get '/music/new' do
   erb :'music/new'
 end
 
+get '/music/:id' do 
+  @musics = Music.find params[:id]
+  erb :'music/show'
+end
+
 post '/music' do 
     @musics = Music.new( 
       song_title: params[:song_title],
