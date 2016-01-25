@@ -1,0 +1,36 @@
+<h1>Submit Music</h1>
+
+<% if @musics.errors.any? %>
+  <div>
+    <strong>There was an error with your suggestion:</strong>
+    <ul>
+      <% @musics.errors.full_messages.each do |music| %>
+        <li><%= music %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<form method="post" action="/music">
+<hr/>
+
+  <div>
+    <label>Artist:</label>
+    <input type="text" name="artist" value="<%= @musics.author %>">
+  </div>
+
+  <div>
+    <label>Song Title:</label>
+    <input type="text" name="song_title" value="<%= @musics.song_title %>">
+  </div>
+
+  <div>
+    <label>URL (optional):</label>
+    <input type="text" name="url" value="<%= @musics.url %>">
+  </div>
+
+  <div>
+  <button>SUBMIT!</button>
+  </div>
+
+</form>
