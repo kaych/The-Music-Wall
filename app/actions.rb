@@ -4,7 +4,6 @@ def current_user
   @current_user = User.find_by(id: session[:user_id])
 end
 
-
 # Homepage (Root path)
 get '/' do
   erb :index
@@ -26,7 +25,7 @@ get '/music' do
 end
 
 get '/music/new' do 
-  @musics = Music.new 
+  @musics = Music.new
   erb :'music/new'
 end
 
@@ -40,11 +39,13 @@ get '/music/author/:author' do
   erb :'music/author'
 end
 
-post '/music' do 
+post '/music' do
     @musics = Music.new( 
       song_title: params[:song_title],
       author: params[:author],
-      url: params[:url]
+      url: params[:url],
+      user: current_user,
+      upvotes: false
       )
 
   if @musics.save
@@ -80,7 +81,7 @@ post '/users/login' do
 end
 
 get '/users/logout' do 
-  session[:user_id] = nil
+  session.clear
   redirect '/users'
 end
 
