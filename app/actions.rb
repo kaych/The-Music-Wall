@@ -18,6 +18,11 @@ get '/music/:id' do
   erb :'music/show'
 end
 
+get '/music/author/:author' do 
+  @musics = Music.where(author: params[:author])
+  erb :'music/author'
+end
+
 post '/music' do 
     @musics = Music.new( 
       song_title: params[:song_title],
