@@ -1,5 +1,7 @@
 body {
   font-family: 'Helvetica';
   background-image: url('http://i.imgur.com/1as2P3Z.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: #FFFFFF;
 }
