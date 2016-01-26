@@ -3,7 +3,12 @@
 
 <% @musics.each do |music| %>
   <div class="music">
-  <h3><a href="/music/<%= music.id %>"><%= music.song_title %></a> <small>(by: <a href="/music/author/<%= music.author %>"><%= music.author %></a>)</small></h3>
+  <h3><a href="/music/<%= music.id %>"><%= music.song_title %></a>
+  <% unless current_user.upvotes.where(music_id: music.id).exists? %>
+      <a href="/music/<%= music.id %>/upvote"> <button type="submit" class="btn btn-success btn-xs"><%= music.upvotes.count %></button></a> 
+  <% end %></h3>
+
+  <h3><small>(by: <a href="/music/author/<%= music.author %>"><%= music.author %></a>)</small></h3>
 
   <p>
     <a href="<%= music.url %>"><%= music.url %></a>
@@ -14,3 +19,4 @@
 <% end %>
 
 <a href="/music/new"><button type="button" class="btn btn-primary">ADD MUSIC</button></a>
+</hr>
