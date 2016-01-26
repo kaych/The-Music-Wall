@@ -34,19 +34,26 @@ get '/music/:id' do
   erb :'music/show'
 end
 
+get '/music/:id/upvote' do 
+  current_user.upvotes.create(
+    music_id: params[:id]
+    )
+  redirect '/music'
+end
+
 get '/music/author/:author' do 
   @musics = Music.where(author: params[:author])
   erb :'music/author'
 end
 
 post '/music' do
-    @musics = Music.new( 
-      song_title: params[:song_title],
-      author: params[:author],
-      url: params[:url],
-      user: current_user,
-      upvotes: false
-      )
+  @musics = Music.new( 
+    song_title: params[:song_title],
+    author: params[:author],
+    url: params[:url],
+    user: current_user,
+    upvotes: upvotes[:vote]
+    )
 
   if @musics.save
     redirect '/music'
