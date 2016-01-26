@@ -5,9 +5,8 @@ class AddUpvotes < ActiveRecord::Migration
     create_table :upvotes do |t|
       t.integer :user_id
       t.integer :music_id
-      t.boolean :upvote
     end
-    
+
   end
 
 end
