@@ -1,6 +1,8 @@
 <h1>Login</h1>
 <hr/>
 
+<% unless session[:user_id] %>
+
 <% if @user.errors.any? %>
   <div>
     <strong>There was an error with your submission:</strong>
@@ -35,3 +37,11 @@
 
 <p>Don't have an account?</p>
 <button type="button" class="btn btn-default"><a href="/users/new">Create a new account</button></a>
+
+<% else %>
+
+  <p> 
+  You are already logged in!
+  </p>
+
+<% end %>
