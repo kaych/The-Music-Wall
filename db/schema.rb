@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 20160126072048) do
   create_table "upvotes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "music_id"
-    t.boolean "upvote"
   end
 
   create_table "users", force: :cascade do |t|
