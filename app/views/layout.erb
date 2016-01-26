@@ -16,7 +16,11 @@
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> -->
+
+  <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
+
+  <script src="/javascript/bootstrap.min.js"></script>
 
   <script src="/javascript/application.js"></script>
 
@@ -37,15 +41,20 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/music">Music Wall<span class="sr-only">(current)</span></a></li>
-        <li><a href="/users">Login</a></li>
+        <li><a href="/music">Music Wall</a></li>
+        <li><a href="/music/new">Post a Song</a></li>
+        <% unless current_user %>
+          <li><a href="/users">Log In</a></li>
+        <% else %>
+          <li><a href="/users/logout">Log Out</a></li>
+        <% end %>
       </ul>
     </div>
   </div>
 </nav>
 
   <% if current_user %>
-    <p>You are currently logged in as <%= current_user.username %> <a href="/users/logout">(logout)</a></p>
+    <p>You are currently logged in as <i><%= current_user.username %></i></p>
   <% else %> 
   <% end %>
   <%= yield %>
