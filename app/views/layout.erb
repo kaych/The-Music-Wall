@@ -23,6 +23,12 @@
   <title>Music Wall App</title>
 </head>
 <body>
+  <% if current_user %>
+    <p>You are currently logged in as <%= current_user.username %></p>
+    <a href="/users/logout"><button>LOGOUT</button></a>
+  <% else %> 
+    <a href="/users"><button>LOG IN</button></a>
+  <% end %>
   <%= yield %>
 </body>
 </html>
