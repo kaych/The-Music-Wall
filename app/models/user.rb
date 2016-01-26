@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  has_many :musics
+  has_many :musics, through: :upvotes
   has_many :upvotes
 
   validates :username, presence: true
