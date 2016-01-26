@@ -12,5 +12,9 @@
   <em>Created at: <%= @musics.created_at %></em>
 </p>
 
+<p>
+  Submitted by: <%= @musics.user.username %>
+</p>
+
 <hr/>
 <a href="/music"><button type="button" class="btn btn-primary">Back to Music Wall</button></a>
