@@ -1,6 +1,23 @@
+enable :sessions
+
+def current_user
+  @current_user = User.find_by(id: session[:user_id])
+end
+
+
 # Homepage (Root path)
 get '/' do
   erb :index
+end
+
+get '/users' do 
+  @user = User.new 
+  erb :'/users/index'
+end
+
+get '/users/new' do 
+  @users = User.new 
+  erb :'/users/new'
 end
 
 get '/music' do
@@ -36,3 +53,34 @@ post '/music' do
     erb :'music/new'
   end
 end
+
+post '/users' do 
+  @users = User.new(
+    username: params[:username],
+    password: params[:password]
+    )
+
+  if @users.save 
+    session[:user_id] = @users.id 
+    redirect '/music'
+  else
+    erb :'users/new'
+  end
+end
+
+post '/users/login' do 
+  @user_query = User.where('username = ? AND password = ?', params[:username], params[:password])
+
+  if @user_query.length > 0
+    session[:user_id] = @user_query.first.id 
+    redirect '/music'
+  else
+    erb :'users/new'
+  end
+end
+
+get '/users/logout' do 
+  session[:user_id] = nil
+  redirect '/users'
+end
+
