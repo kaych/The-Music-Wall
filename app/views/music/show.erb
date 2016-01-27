@@ -25,10 +25,19 @@
 
   <form method="post" action="/review">
   <hr/>
+    <div class="dropdown-rating">
+      <select name="rating">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div>
 
     <div class="form-group">
       <label for="exampleInputLike">Did you like this song?</label>
-      <input type="text" name="like" class="form-control" id="exampleInputLike"  placeholder="like/dislike">
+      <input type="text" name="like" class="form-control" id="exampleInputLike" placeholder="like/dislike">
     </div>
 
     <input type="hidden" name="id" value="<%= @song.id %>"></input>
@@ -49,6 +58,8 @@
 
   <p>Thanks for your review.</p>
 
+  <a href="/delete"><button type="submit" class="btn btn-danger">Delete my comment</button></a>
+
 <% end %>
 
 </hr>
@@ -59,6 +70,10 @@
 
 <p>
   submitted by: <b><%= review.user.username %></b>
+</p>
+
+<p>
+  rating: <b><%= review.rating.to_i %></b>
 </p>
 
 <p>
