@@ -49,7 +49,7 @@ post '/review' do
     music_id: params[:id], 
     like: params[:like],
     comment: params[:comment],
-    # user_id: current_user.id
+    rating: params[:rating]
     )
   redirect '/music/' + params[:id]
 end
@@ -86,6 +86,12 @@ post '/users' do
   else
     erb :'users/new'
   end
+end
+
+get '/delete' do 
+  @delete_review = Review.where('user_id = ?', current_user.id)
+  @delete_review.delete_all
+  redirect '/music'
 end
 
 post '/users/login' do 
