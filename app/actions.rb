@@ -20,7 +20,10 @@ get '/users/new' do
 end
 
 get '/music' do
-  @musics = Music.all 
+  @musics = Music.includes(:upvotes)
+            .references(:upvotes)
+            .group('musics.id')
+            .order('count(upvotes.music_id) DESC')
   erb :'/music/index'
 end
 
@@ -30,7 +33,7 @@ get '/music/new' do
 end
 
 get '/music/:id' do 
-  @musics = Music.find params[:id]
+  @song = Music.find params[:id]
   erb :'music/show'
 end
 
@@ -39,6 +42,16 @@ get '/music/:id/upvote' do
     music_id: params[:id]
     )
   redirect '/music'
+end
+
+post '/review' do 
+  current_user.reviews.create( 
+    music_id: params[:id], 
+    like: params[:like],
+    comment: params[:comment],
+    # user_id: current_user.id
+    )
+  redirect '/music/' + params[:id]
 end
 
 get '/music/author/:author' do 
@@ -51,8 +64,7 @@ post '/music' do
     song_title: params[:song_title],
     author: params[:author],
     url: params[:url],
-    user: current_user,
-    upvotes: upvotes[:vote]
+    user: current_user
     )
 
   if @musics.save
