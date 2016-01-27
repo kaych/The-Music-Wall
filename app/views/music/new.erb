@@ -1,3 +1,5 @@
+<div class="content">
+  <div class="overlay"></div>
 <h1>Post a Song</h1>
 
 <% if @musics.errors.any? %>
@@ -15,13 +17,13 @@
 <hr/>
 
   <div class="form-group">
-    <label for="exampleInputAuthor1">Artist</label>
-    <input type="artist" name="author" class="form-control" id="exampleInputAuthor1"  placeholder="Artist" value="<%= @musics.author %>">
+    <label for="exampleInputSong1">Song Title:</label>
+    <input type="song_title" name="song_title" class="form-control" id="exampleInputSong1"  placeholder="Song Name" value="<%= @musics.song_title %>">
   </div>
 
   <div class="form-group">
-    <label for="exampleInputSong1">Song Title:</label>
-    <input type="song_title" name="song_title" class="form-control" id="exampleInputSong1"  placeholder="Song Name" value="<%= @musics.song_title %>">
+    <label for="exampleInputAuthor1">Artist</label>
+    <input type="artist" name="author" class="form-control" id="exampleInputAuthor1"  placeholder="Artist" value="<%= @musics.author %>">
   </div>
 
   <div class="form group">
@@ -32,6 +34,8 @@
   <hr/>
   <div>
   <button type="submit" class="btn btn-primary">Submit</button>
+  <hr/>
   </div>
 
 </form>
+</div>

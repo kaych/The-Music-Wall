@@ -3,17 +3,6 @@
 
 <% unless session[:user_id] %>
 
-<% if @user.errors.any? %>
-  <div>
-    <strong>There was an error with your submission:</strong>
-    <ul>
-      <% @user.errors.full_messages.each do |u| %>
-        <li><%= u %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
 <form method="post" action="/users/login">
 
   <div class="form-group">
@@ -40,8 +29,8 @@
 
 <% else %>
 
-  <p> 
+  <h3> 
   You are already logged in!
-  </p>
+  </h3>
 
 <% end %>

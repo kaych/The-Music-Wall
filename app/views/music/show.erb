@@ -1,3 +1,5 @@
+ <div class="content">
+ <div class="overlay"></div>
 <h1><%= @song.song_title %></h1>
 
 <p>
@@ -66,25 +68,33 @@
 
 <h2>Reviews</h2>
 
-<% @song.reviews.each do |review| %>
 
-<p>
-  submitted by: <b><%= review.user.username %></b>
-</p>
+<% if @song.reviews.exists? %> 
+  <% @song.reviews.each do |review| %>
 
-<p>
-  rating: <b><%= review.rating.to_i %></b>
-</p>
+    <p>
+      submitted by: <%= review.user.username %>
+    </p>
 
-<p>
-  Like/Dislike? <b><%= review.like %></b>
-</p>
+    <p>
+      rating: <%= review.rating.to_i %>
+    </p>
 
-<p>
-  Comment: <b><%= review.comment %></b>
-</p>
+    <p>
+      Like/Dislike? <%= review.like %>
+    </p>
+
+    <p>
+      Comment: <%= review.comment %>
+    </p>
+
+    <hr/>
+  <% end %>
+<% else %>
+  <h3>There are no reviews yet!</h3>
 
 <% end %>
 
-<hr/>
 <a href="/music"><button type="button" class="btn btn-primary">Back to Music Wall</button></a>
+<hr/>
+</div> 

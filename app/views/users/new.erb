@@ -2,7 +2,7 @@
 
 <% if @users.errors.any? %>
   <div>
-    <strong>There was an error with your submission:</strong>
+    <h4><strong>There was an error with your submission:</strong></h4>
     <ul>
       <% @users.errors.full_messages.each do |user| %>
         <li><%= user %></li>
@@ -26,7 +26,7 @@
 
   <hr/>
   <div>
-  <button type="submit" class="btn btn-success">Submit</button>
+  <button type="submit" class="btn btn-success">Sign Up!</button>
   </div>
 
 </form>

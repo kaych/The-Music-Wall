@@ -1,4 +1,6 @@
-<h1>Songs by this artist:</h1>
+<div class="content">
+  <div class="overlay"></div>
+<h1>Songs by <%= @musics.first.author %>:</h1>
 <hr/>
 
 <% @musics.each do |music| %>
@@ -15,3 +17,6 @@
 <% end %>
 
 <a href="/music"><button type="button" class="btn btn-primary">Back to Music Wall</button></a>
+<hr/>
+
+</div>

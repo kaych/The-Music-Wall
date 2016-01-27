@@ -1,22 +1,32 @@
-<h1>Music Wall</h1>
-<hr/>
+<div class="content">
+  <div class="overlay"></div>
+  <% if current_user %>
+  <h1>Music Wall</h1>
 
-<% @musics.each do |music| %>
-  <div class="music">
-  <h3><a href="/music/<%= music.id %>"><%= music.song_title %></a>
-  <% unless current_user.upvotes.where(music_id: music.id).exists? %>
-      <a href="/music/<%= music.id %>/upvote"> <button type="submit" class="btn btn-success btn-xs"><%= music.upvotes.count %></button></a> 
-  <% end %></h3>
-
-  <h3><small>(by: <a href="/music/author/<%= music.author %>"><%= music.author %></a>)</small></h3>
-
-  <p>
-    <a href="<%= music.url %>"><%= music.url %></a>
-  </p>
-
-  </div>
   <hr/>
-<% end %>
 
-<a href="/music/new"><button type="button" class="btn btn-primary">ADD MUSIC</button></a>
-</hr>
+  <% @musics.each do |music| %>
+    <div class="music">
+    <h3><a href="/music/<%= music.id %>"><%= music.song_title %></a>
+    <% unless current_user.has_upvoted_song?(music) %>
+        <a href="/music/<%= music.id %>/upvote"> <button type="submit" class="btn btn-success btn-xs"><%= music.upvotes.count %></button></a>
+    <% else %>
+      <button type="submit" class="btn btn-success btn-xs"><%= music.upvotes.count %></button>
+    <% end %></h3>
+
+    <h3><small>(by: <a href="/music/author/<%= music.author %>"><%= music.author %></a>)</small></h3>
+
+    <p>
+      <a href="<%= music.url %>"><%= music.url %></a>
+    </p>
+
+    </div>
+    <hr/>
+  <% end %>
+
+  <a href="/music/new"><button type="button" class="btn btn-primary">ADD MUSIC</button></a>
+  <hr/>
+  <% else %>
+  <h3>You must be <a href="/users">logged in</a> to scale the wall!</h3>
+  <% end %>
+</div>
