@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
   validates :username, presence: true
   validates :password, presence: true
 
+  def has_reviewed_song?(song)
+    self.reviews.where(music_id: song.id).exists?
+  end
+
 end
